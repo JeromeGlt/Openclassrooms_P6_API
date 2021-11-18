@@ -1,8 +1,18 @@
+require('dotenv').config()
+// const db = require('db')
+
+// db.connect({
+//     host: process.env.DB_HOST,
+//     username: process.env.DB_USER,
+//     password: process.env.DB_PASS
+// })
+
 const express = require('express')
 const mongoose = require('mongoose')
 const path = require('path')
 const cors = require('cors')
 const helmet = require('helmet')
+const apiLimiter = require('./apiLimiter')
 
 const sauceRoutes = require('./routes/sauces')
 const userRoutes = require('./routes/user')
@@ -27,5 +37,6 @@ app.use('/api/auth', userRoutes)
 app.use('/api/sauces', likeRoutes)
 
 app.use(helmet())
+app.use('/api/', apiLimiter)
 
 module.exports = app

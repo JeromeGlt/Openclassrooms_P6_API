@@ -1,9 +1,8 @@
 const passwordValidator = require('password-validator')
 
-let schema = new passwordValidator()
+let passwordSchema = new passwordValidator()
 
-// Add properties to it
-schema
+passwordSchema
 .is().min(8)                                    // Minimum length 8
 .is().max(100)                                  // Maximum length 100
 .has().uppercase()                              // Must have uppercase letters
@@ -12,14 +11,4 @@ schema
 .has().not().spaces()                           // Should not have spaces
 .is().not().oneOf(['Passw0rd', 'Password123'])  // Blacklist these values
 
-// // Validate against a password string
-// console.log(schema.validate('validPASS123'))
-// // => true
-// console.log(schema.validate('invalidPASS'))
-// // => false
-
-// // Get a full list of rules which failed
-// console.log(schema.validate('joke', { list: true }))
-// // => [ 'min', 'uppercase', 'digits' ]
-
-module.exports = schema
+module.exports = passwordSchema
