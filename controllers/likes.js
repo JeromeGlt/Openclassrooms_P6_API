@@ -5,11 +5,11 @@ exports.likedSauce = (req, res, next) => {
     Sauce.findOne({_id: req.params.id})
         .then(sauce => {
 
-            let resultLike = sauce.usersLiked.some(element => element === req.body.userId)
-            let resultDislike = sauce.usersDisliked.some(element => element === req.body.userId)
+            const resultLike = sauce.usersLiked.some(element => element === req.body.userId)
+            const resultDislike = sauce.usersDisliked.some(element => element === req.body.userId)
 
-            let filterUserLike = sauce.usersLiked.filter(element => element !== req.body.userId)
-            let filterUserDislike = sauce.usersDisliked.filter(element => element !== req.body.userId)
+            const filterUserLike = sauce.usersLiked.filter(element => element !== req.body.userId)
+            const filterUserDislike = sauce.usersDisliked.filter(element => element !== req.body.userId)
 
             if(req.body.like === 1 && resultLike === false) {
                 sauce.usersLiked.push(req.body.userId)
